@@ -1,6 +1,8 @@
 # presearch-bot
 Python script for automated firefox web browser search on presearch.org.
 
+![by @neocarvajal](https://raw.githubusercontent.com/neocarvajal/presearch-bot/master/presearch.png "presearch web")
+
 # presearch
 Presearch is an open, decentralized search engine that rewards community members 
 with Presearch Tokens for their usage, contribution to, and promotion of the platform.
@@ -12,4 +14,5 @@ https://selenium-python.readthedocs.io/installation.html
 # how use
 In linux after you install selenium only need to call: "python presearch.py" from your terminal
 
-![by @neocarvajal](https://raw.githubusercontent.com/neocarvajal/presearch-bot/master/presearch.png "presearch web")
+![by @neocarvajal](https://raw.githubusercontent.com/neocarvajal/presearch-bot/master/how_use.png "presearch script")
+
