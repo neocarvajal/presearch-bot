@@ -12,4 +12,4 @@ https://selenium-python.readthedocs.io/installation.html
 # how use
 In linux after you install selenium only need to call: "python presearch.py" from your terminal
 
-![by @neocarvajal](https://raw.githubusercontent.com/neocarvajal//presearch-bot/master/presearch.png "presearch web")
+![by @neocarvajal](https://raw.githubusercontent.com/neocarvajal/presearch-bot/master/presearch.png "presearch web")
