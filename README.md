@@ -16,3 +16,7 @@ In linux after you install selenium only need to call: "python presearch.py" fro
 
 ![by @neocarvajal](https://raw.githubusercontent.com/neocarvajal/presearch-bot/master/how_use.png "presearch script")
 
+# to do
+This script reads a file (search.txt) to get the words that are used in the presearch search engine.
+
+It is necessary to cure the list of words and have at least a thousand words of the most searched on the internet to get a good presearch score and valid tokens
