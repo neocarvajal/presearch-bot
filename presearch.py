@@ -17,6 +17,7 @@ import os
 import random
 from selenium import webdriver
 from selenium.webdriver.common.by import By
+from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
@@ -34,38 +35,45 @@ options.binary_location = "/usr/bin/firefox"
 
 browser = webdriver.Firefox(firefox_profile=profile,firefox_options=options)
 
-def busqueda(palabra):		
-	search = browser.find_element_by_id('search')
-	search.send_keys(palabra)
-	print("Buscando... " + palabra)
-	submit = browser.find_element_by_xpath("//button[@type='submit']")
-	submit.click()
-	time.sleep(10)
+def busqueda(palabra):
+
+	#time.sleep(10)
+
+	print("Navegando a presearch... \n")
+
+	browser.get("https://www.presearch.org/?utm_source=extcr")
+	
 	try:
-	    element = WebDriverWait(browser, 10).until(
-	        EC.presence_of_element_located((By.ID, "logo"))
-	    )
-	finally:		
-		browser.implicitly_wait(10)		
-		print("Navegando a presearch...")
-		browser.get('https://presearch.org/')
+	    element = WebDriverWait(browser, 10).until(EC.presence_of_element_located((By.ID, "search")))
+	finally:
+		print("Buscando... " + palabra + "\n")
+		element.send_keys(palabra, Keys.ENTER)
+		
+	try:
+	    element = WebDriverWait(browser, 20).until(EC.presence_of_element_located((By.XPATH, "//div[@class='r']/a[1]")))
+	finally:
+		results = []
 
-print("Navegando a presearch...")
+	links = browser.find_elements_by_xpath("//div[@class='r']/a")
+	
+	for link in links:			
+		results.append(link.get_attribute("href"))
+		print("Enlace encontrado: " + link.get_attribute("href") + "\n")
+		
+	link = random.choice(results)
+		
+	print("Navegando a " + link + "\n")
+	
+	link = browser.find_element_by_xpath("//a[starts-with(@href,'"+ link + "')]").click()
 
-browser.get('https://presearch.org/')
+	time.sleep(10)		 
 
-try:
-    element = WebDriverWait(browser, 10).until(
-        EC.presence_of_element_located((By.ID, "Layer_1"))
-    )
-finally:
+archivo = open("search.txt", "r")
 
-	archivo = open("search.txt", "r")	
+for palabra in archivo.readlines():
+	busqueda(palabra)
 
-	for palabra in archivo.readlines():	    
-		busqueda(palabra)
-
-	browser.close()
+browser.close()
 
 __author__ = "Erick Carvajal"
 __copyright__ = "Copyright 2019, presearch.py"
